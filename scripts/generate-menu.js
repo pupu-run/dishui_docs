@@ -9,7 +9,8 @@ const __dirname = path.dirname(__filename);
 
 const projectRoot = path.join(__dirname, '..');
 const docsDir = path.join(projectRoot, 'public/docs');
-const appPath = path.join(projectRoot, 'src/App.tsx');
+const autogenDir = path.join(projectRoot, 'src/autogen');
+const menuPath = path.join(autogenDir, 'menu.tsx');
 
 // 读取 markdown 文件的标题
 function readMarkdownTitle(filePath) {
@@ -82,15 +83,6 @@ function buildDocTree(dir, baseDir = dir, parentPath = '') {
     });
     
     return tree;
-}
-
-// 将树结构转换为扁平列表（用于路由）
-function flattenTree(tree, result = []) {
-    result.push(...tree.files);
-    for (const dirName in tree.dirs) {
-        flattenTree(tree.dirs[dirName], result);
-    }
-    return result;
 }
 
 // 生成菜单项代码（支持层级）
@@ -175,10 +167,12 @@ ${indent}}`;
     return items.join(',\n');
 }
 
-// 生成菜单项代码
-function generateMenuItems(tree) {
+// 生成菜单文件内容
+function generateMenuFile(tree) {
+    let menuItemsCode;
+    
     if (tree.files.length === 0 && Object.keys(tree.dirs).length === 0) {
-        return `const menuItems: MenuItem[] = [
+        menuItemsCode = `export const menuItems: MenuItem[] = [
     {
         id: 'home',
         label: '首页',
@@ -188,171 +182,38 @@ function generateMenuItems(tree) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
         ),
-    },
+    }
 ];`;
+    } else {
+        const menuTreeCode = generateMenuTreeCode(tree, null, '', true);
+        menuItemsCode = `export const menuItems: MenuItem[] = [\n${menuTreeCode}\n];`;
     }
 
-    const menuItemsCode = generateMenuTreeCode(tree, null, '', true);
-    return `const menuItems: MenuItem[] = [\n${menuItemsCode}\n];`;
-}
-
-// 生成路由代码
-function generateRoutes(docs) {
-    if (docs.length === 0) {
-        return {
-            routesCode: `// 创建首页路由
-const indexRoute = createRoute({
-    getParentRoute: () => rootRoute,
-    path: '/',
-    component: () => (
-        <div className="p-6">
-            <h1 className="text-3xl font-bold mb-6">欢迎使用文档系统</h1>
-            <p>请在 public/docs/ 目录下添加 markdown 文档</p>
-        </div>
-    ),
-});`,
-            routeTreeCode: `const routeTree = rootRoute.addChildren([indexRoute]);`
-        };
-    }
-
-    const routesCode = docs.map((doc, index) => {
-        const routeName = doc.isIndex && doc.urlPath === '/' ? 'indexRoute' : `route${index}`;
-        const routePath = doc.urlPath;
-        
-        return `// ${doc.title}
-const ${routeName} = createRoute({
-    getParentRoute: () => rootRoute,
-    path: '${routePath}',
-    component: () => (
-        <div className="p-6">
-            <Markdown source='url' content='${doc.publicPath}' enableMarkmap={true} enableMdx={true} />
-        </div>
-    ),
-});`;
-    }).join('\n\n');
-
-    const routeNames = docs.map((doc, index) => 
-        doc.isIndex && doc.urlPath === '/' ? 'indexRoute' : `route${index}`
-    ).join(', ');
-
-    const routeTreeCode = `const routeTree = rootRoute.addChildren([${routeNames}]);`;
-
-    return { routesCode, routeTreeCode };
-}
-
-// 生成搜索配置
-function generateSearchConfig(docs) {
-    const searchItems = docs.map(doc => ({
-        id: doc.id,
-        title: doc.title,
-        path: doc.urlPath,
-        description: `${doc.title} - 文档`,
-    }));
-    
-    return `// 文档搜索数据
-const searchData = ${JSON.stringify(searchItems, null, 4)};
-
-// 搜索配置
-const searchConfig = {
-    enabled: true,
-    placeholder: { zh: '搜索文档...', en: 'Search docs...' },
-    shortcut: '⌘K',
-    searchFunction: (term: string) => {
-        if (!term.trim()) return [];
-        
-        const lowerTerm = term.toLowerCase();
-        return searchData
-            .filter(item => 
-                item.title.toLowerCase().includes(lowerTerm) ||
-                item.id.toLowerCase().includes(lowerTerm)
-            )
-            .map(item => ({
-                title: item.title,
-                description: item.description,
-                path: item.path,
-                score: item.title.toLowerCase().includes(lowerTerm) ? 1 : 0.5,
-            }))
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 10);
-    },
-};`;
-}
-
-// 生成完整的 App.tsx
-function generateApp(tree, docs) {
-    const { routesCode, routeTreeCode } = generateRoutes(docs);
-    const menuItemsCode = generateMenuItems(tree);
-    const searchConfigCode = generateSearchConfig(docs);
-
-    return `import { AppShell, AppLayoutWrapper, Markdown } from 'dishui';
+    return `
 import type { MenuItem } from 'dishui';
-import 'dishui/dist/dishui.css';
-import React from 'react';
-import { createRouter, createRootRoute, createRoute } from '@tanstack/react-router';
 
-// 创建根路由
-const rootRoute = createRootRoute({
-    component: AppLayoutWrapper,
-});
-
-${routesCode}
-
-// 创建路由树
-${routeTreeCode}
-
-// 创建 router 实例
-const router = createRouter({ routeTree });
-
-// 声明路由类型
-declare module '@tanstack/react-router' {
-    interface Register {
-        router: typeof router;
-    }
-}
-
-${menuItemsCode}
-
-${searchConfigCode}
-
-const App: React.FC = () => {
-    return (
-        <AppShell
-            router={router}
-            initialLang="zh"
-            initialTheme="eyecare"  // 可选: light, dark, retro, cyberpunk, matrix, oceanblue, eyecare, ghibli
-            menuItems={menuItems}
-            searchConfig={searchConfig}
-            sidebarWidth={160}  // 有效范围: 160-400px
-            sidebarCollapsedWidth={64}  // 可选: 收起时的宽度
-        />
-    );
-};
-
-export default App;
-`;
+${menuItemsCode}`;
 }
 
 // 主函数
 function main() {
     console.log('🔍 扫描 docs 目录...');
     const tree = buildDocTree(docsDir);
-    const docs = flattenTree(tree);
     
-    console.log(`📄 找到 ${docs.length} 个文档:`);
-    docs.forEach(doc => {
-        console.log(`   - ${doc.title} (${doc.filePath})`);
-    });
+    // 确保 autogen 目录存在
+    if (!fs.existsSync(autogenDir)) {
+        fs.mkdirSync(autogenDir, { recursive: true });
+        console.log(`📁 创建目录: ${autogenDir}`);
+    }
     
-    console.log('\n✨ 生成 App.tsx...');
-    const appContent = generateApp(tree, docs);
+    console.log('\n✨ 生成 menu.tsx...');
+    const menuContent = generateMenuFile(tree);
     
-    fs.writeFileSync(appPath, appContent, 'utf-8');
+    fs.writeFileSync(menuPath, menuContent, 'utf-8');
     
-    console.log(`✅ App.tsx 已生成！(${appPath})`);
-    console.log('\n📋 生成的配置:');
-    console.log(`   - ${docs.length} 个路由`);
-    console.log(`   - 菜单支持层级结构`);
-    console.log(`   - ${docs.length} 个搜索项`);
+    console.log(`✅ menu.tsx 已生成！(${menuPath})`);
 }
 
 main();
+
+

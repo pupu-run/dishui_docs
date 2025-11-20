@@ -1,4 +1,4 @@
-# 首页
+# Another Doc Site？
 
 欢迎使用文档系统！
 
@@ -14,14 +14,13 @@
 
 ## 使用方法
 
+0. 执行`pnpm install`安装依赖包
 1. 在 `public/docs/` 目录下添加 `.md` 文件
 2. 运行 `pnpm run gen:app` 生成新的 App.tsx
-3. 启动开发服务器查看效果
+3. 启动开发服务器查看效果， 运行`pnpm run dev`
 
 ## 文档结构
 
 支持嵌套目录，如：
 - `/docs/index.md` → 首页
-- `/docs/guide/start.md` → 指南/开始
-- `/docs/api/reference.md` → API/参考
 

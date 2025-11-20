@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "gen:app": "node scripts/generate-app.js"
+    "gen:menu": "node scripts/generate-menu.js",
+    "rebuild:dishui": "bash scripts/rebuild-dishui.sh"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +16,7 @@
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
     "@tanstack/react-router": "^1.136.3",
-    "dishui": "file:/Users/dameng/repo/github/DishUI",
+    "dishui": "^0.0.26",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
