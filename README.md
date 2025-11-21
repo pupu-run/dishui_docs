@@ -252,4 +252,4 @@ pnpm run dev
 
 ## 📄 License
 
-ISC
+MIT
