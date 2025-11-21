@@ -1,183 +1,183 @@
-# Learn DiShuI - 文档系统
+# DiShUI DocGen Project Setup Tutorial
 
-一个基于 Vite + React + DiShuI 的自动化文档生成系统。
+An automated documentation generation system based on Vite + React + DiShuI.
 
-## ✨ 特性
+## ✨ Features
 
-- 🚀 **自动生成**: 扫描 `public/docs/` 目录，自动生成路由和菜单
-- 📝 **Markdown 支持**: 完整的 Markdown 渲染支持
-- 🎨 **Markmap 思维导图**: 支持将 Markdown 渲染为思维导图
-- 🔍 **搜索功能**: 自动生成搜索配置，支持实时搜索文档
-- 📱 **响应式设计**: 完美的移动端适配
-- 🎯 **层级菜单**: 支持多级目录结构，自动生成嵌套菜单
-- ⚡ **实时预览**: 修改文档后重新生成即可查看效果
+- 🚀 **Auto Generation**: Scans `public/docs/` directory and automatically generates routes and menus
+- 📝 **Markdown Support**: Full Markdown rendering capabilities
+- 🎨 **Markmap Mind Maps**: Supports rendering Markdown as interactive mind maps
+- 🔍 **Search Functionality**: Auto-generates search configuration with real-time document search
+- 📱 **Responsive Design**: Perfect mobile adaptation
+- 🎯 **Hierarchical Menus**: Supports multi-level directory structure with auto-generated nested menus
+- ⚡ **Live Preview**: Regenerate after modifying documents to see changes instantly
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 安装依赖
+### Install Dependencies
 
 ```bash
 pnpm install
 ```
 
-### 创建文档
+### Create Documentation
 
-1. 在 `public/docs/` 目录下创建 `.md` 文件
-2. 第一行使用 `# 标题` 格式作为文档标题
-3. 运行生成命令
+1. Create `.md` files in the `public/docs/` directory
+2. Use `# Title` format on the first line as the document title
+3. Run the generation command
 
 ```bash
 pnpm run gen:menu
 ```
 
-### 启动开发服务器
+### Start Development Server
 
 ```bash
 pnpm run dev
 ```
 
-### 构建生产版本
+### Build for Production
 
 ```bash
 pnpm run build
 ```
 
-## 📁 文档结构
+## 📁 Documentation Structure
 
 ```
 public/docs/
-├── index.md                    # 首页 (路径: /)
-├── components.md               # 组件文档 (路径: /components)
-├── guide/                      # 指南目录 → 生成父菜单 "使用指南"
-│   ├── index.md                # 指南首页 (路径: /guide)
-│   └── getting-started.md      # 快速开始 (路径: /guide/getting-started)
-└── api/                        # API 目录 → 生成父菜单 "API 文档"
-    ├── index.md                # API 首页 (路径: /api)
-    ├── components.md           # 组件 API (路径: /api/components)
-    └── utils.md                # 工具函数 (路径: /api/utils)
+├── index.md                    # Homepage (path: /)
+├── components.md               # Components doc (path: /components)
+├── guide/                      # Guide directory → generates parent menu "Guide"
+│   ├── index.md                # Guide homepage (path: /guide)
+│   └── getting-started.md      # Getting Started (path: /guide/getting-started)
+└── api/                        # API directory → generates parent menu "API Documentation"
+    ├── index.md                # API homepage (path: /api)
+    ├── components.md           # Components API (path: /api/components)
+    └── utils.md                # Utility functions (path: /api/utils)
 ```
 
-### 路径映射规则
+### Path Mapping Rules
 
-- `index.md` → `/` (首页，根目录的 index.md)
+- `index.md` → `/` (homepage, index.md in root directory)
 - `components.md` → `/components`
-- `guide/index.md` → `/guide` (目录首页，作为父菜单)
-- `guide/getting-started.md` → `/guide/getting-started` (作为子菜单)
-- `api/index.md` → `/api` (目录首页，作为父菜单)
-- `api/components.md` → `/api/components` (作为子菜单)
+- `guide/index.md` → `/guide` (directory homepage, serves as parent menu)
+- `guide/getting-started.md` → `/guide/getting-started` (serves as child menu)
+- `api/index.md` → `/api` (directory homepage, serves as parent menu)
+- `api/components.md` → `/api/components` (serves as child menu)
 
-### 层级菜单生成规则
+### Hierarchical Menu Generation Rules
 
-1. **根目录文件** → 生成顶级菜单项
-2. **子目录 + index.md** → 生成父菜单项（使用 index.md 的标题）
-3. **子目录中的其他 .md 文件** → 生成该父菜单的 `children`
-4. **支持无限嵌套** → 可以有 `docs/guide/advanced/concepts.md` 等
+1. **Root directory files** → Generate top-level menu items
+2. **Subdirectory + index.md** → Generate parent menu item (using index.md's title)
+3. **Other .md files in subdirectory** → Generate `children` for that parent menu
+4. **Infinite nesting supported** → Can have `docs/guide/advanced/concepts.md` etc.
 
-## 📝 创建文档示例
+## 📝 Creating Documentation Example
 
-创建 `public/docs/example.md`:
+Create `public/docs/example.md`:
 
 ```markdown
-# 我的示例文档
+# My Example Document
 
-这是文档的内容。
+This is the document content.
 
-## 章节 1
+## Section 1
 
-内容...
+Content...
 
-## 章节 2
+## Section 2
 
-更多内容...
+More content...
 ```
 
-然后运行：
+Then run:
 
 ```bash
 pnpm run gen:menu
 ```
 
-生成后的效果：
-- **菜单**: 自动添加 "我的示例文档" 菜单项
-- **路由**: 访问 `/example` 显示文档内容
-- **搜索**: 自动索引到搜索配置中
+Generated results:
+- **Menu**: Automatically adds "My Example Document" menu item
+- **Route**: Visit `/example` to display document content
+- **Search**: Automatically indexed in search configuration
 
-## 🛠️ 可用命令
+## 🛠️ Available Commands
 
-| 命令 | 说明 |
-|------|------|
-| `pnpm run dev` | 启动开发服务器 |
-| `pnpm run build` | 构建生产版本 |
-| `pnpm run preview` | 预览生产构建 |
-| `pnpm run gen:menu` | 🎯 生成 menu.tsx (扫描 docs 目录) |
+| Command | Description |
+|---------|-------------|
+| `pnpm run dev` | Start development server |
+| `pnpm run build` | Build for production |
+| `pnpm run preview` | Preview production build |
+| `pnpm run gen:menu` | 🎯 Generate menu.tsx (scan docs directory) |
 
-## 🎯 自动生成的内容
+## 🎯 Auto-Generated Content
 
-运行 `pnpm run gen:menu` 后，脚本会：
+After running `pnpm run gen:menu`, the script will:
 
-1. ✅ 扫描 `public/docs/` 目录下所有 `.md` 文件（支持嵌套目录）
-2. ✅ 读取每个文件的第一行 `#` 标题作为菜单名称
-3. ✅ 生成层级菜单配置 (`menuItems`)，带 `children` 嵌套
-4. ✅ 自动生成 `src/autogen/menu.tsx`
+1. ✅ Scan all `.md` files in `public/docs/` directory (supports nested directories)
+2. ✅ Read the first line `#` title from each file as the menu name
+3. ✅ Generate hierarchical menu configuration (`menuItems`) with nested `children`
+4. ✅ Automatically generate `src/autogen/menu.tsx`
 
-### 生成示例
+### Generation Example
 
-**输入**:
+**Input**:
 ```
 public/docs/
-├── index.md           # 首页
-├── guide.md           # 指南
+├── index.md           # Homepage
+├── guide.md           # Guide
 └── api/
-    ├── index.md       # API 文档首页
-    └── reference.md   # API参考
+    ├── index.md       # API Documentation homepage
+    └── reference.md   # API Reference
 ```
 
-**输出**: `src/autogen/menu.tsx` 包含:
-- **3 个菜单项**: 
-  - "首页" (顶级)
-  - "指南" (顶级)
-  - "API 文档" (顶级，包含 children: ["API参考"])
+**Output**: `src/autogen/menu.tsx` contains:
+- **3 menu items**: 
+  - "Homepage" (top-level)
+  - "Guide" (top-level)
+  - "API Documentation" (top-level, with children: ["API Reference"])
 
-## 🎨 文档功能
+## 🎨 Documentation Features
 
-### Markdown 特性
+### Markdown Features
 
-支持标准 Markdown 语法：
-- 标题 (`#` - `######`)
-- 列表（有序/无序）
-- 代码块（带语法高亮）
-- 表格
-- 引用
-- 链接和图片
-- 等等...
+Supports standard Markdown syntax:
+- Headings (`#` - `######`)
+- Lists (ordered/unordered)
+- Code blocks (with syntax highlighting)
+- Tables
+- Blockquotes
+- Links and images
+- And more...
 
-### Markmap 思维导图
+### Markmap Mind Maps
 
-文档会自动启用 Markmap，可以将 Markdown 结构渲染为交互式思维导图。
+Documents automatically enable Markmap, which can render Markdown structure as interactive mind maps.
 
-### MDX 支持
+### MDX Support
 
-支持在 Markdown 中使用 React 组件（需要 `enableMdx={true}`）。
+Supports using React components in Markdown (requires `enableMdx={true}`).
 
-## 📖 最佳实践
+## 📖 Best Practices
 
-### 1. 使用 index.md 作为首页
+### 1. Use index.md as Homepage
 
-始终创建 `public/docs/index.md` 作为首页，它会自动映射到 `/` 路径。
+Always create `public/docs/index.md` as the homepage, it will automatically map to the `/` path.
 
-### 2. 有意义的标题
+### 2. Meaningful Titles
 
-确保每个文档的第一行是清晰的标题：
+Ensure each document's first line is a clear title:
 
 ```markdown
-# 清晰的文档标题
+# Clear Document Title
 
-文档内容...
+Document content...
 ```
 
-### 3. 目录组织
+### 3. Directory Organization
 
-使用子目录组织相关文档：
+Use subdirectories to organize related documents:
 
 ```
 docs/
@@ -191,66 +191,65 @@ docs/
     └── hooks.md
 ```
 
-### 4. 每次修改后重新生成
+### 4. Regenerate After Each Modification
 
-添加、删除或修改文档文件名后，记得运行：
+After adding, deleting, or modifying document filenames, remember to run:
 
 ```bash
 pnpm run gen:menu
 ```
 
-## 🔧 技术栈
+## 🔧 Tech Stack
 
-- **框架**: React 19
-- **构建工具**: Vite 6
-- **路由**: TanStack Router
-- **UI 组件**: DiShuI
-- **样式**: Tailwind CSS + DaisyUI
+- **Framework**: React 19
+- **Build Tool**: Vite 6
+- **Router**: TanStack Router
+- **UI Components**: DiShuI
+- **Styling**: Tailwind CSS + DaisyUI
 - **Markdown**: react-markdown (via DiShuI)
 
-## 📦 目录结构
+## 📦 Directory Structure
 
 ```
 dishui_docs/
 ├── public/
-│   └── docs/              # 📁 文档目录
-│       ├── index.md       # 首页
+│   └── docs/              # 📁 Documentation directory
+│       ├── index.md       # Homepage
 │       └── ...
 ├── scripts/
-│   └── generate-menu.js   # 🔧 自动生成菜单脚本
+│   └── generate-menu.js   # 🔧 Auto-generate menu script
 ├── src/
 │   ├── autogen/
-│   │   └── menu.tsx      # ⚙️ 自动生成的菜单配置
-│   ├── App.tsx           # 主应用
-│   ├── main.tsx          # 入口文件
-│   └── index.css         # 样式
+│   │   └── menu.tsx      # ⚙️ Auto-generated menu configuration
+│   ├── App.tsx           # Main application
+│   ├── main.tsx          # Entry file
+│   └── index.css         # Styles
 ├── package.json
 └── vite.config.ts
 ```
 
-## 🤝 工作流程
+## 🤝 Workflow
 
 ```bash
-# 1. 创建或修改文档
-echo "# 新文档" > public/docs/new-doc.md
+# 1. Create or modify documentation
+echo "# New Document" > public/docs/new-doc.md
 
-# 2. 运行生成脚本
+# 2. Run generation script
 pnpm run gen:menu
 
-# 3. 启动开发服务器 (如果还没运行)
+# 3. Start development server (if not already running)
 pnpm run dev
 
-# 4. 在浏览器中查看 http://localhost:5173
+# 4. View in browser at http://localhost:5173
 ```
 
-## 💡 提示
+## 💡 Tips
 
-- 生成的 `src/autogen/menu.tsx` 会被完全覆盖，不要手动编辑
-- 如果需要自定义，修改 `scripts/generate-menu.js`
-- 文档文件名会影响 URL 路径
-- 支持多级嵌套目录
+- The generated `src/autogen/menu.tsx` will be completely overwritten, do not edit manually
+- If customization is needed, modify `scripts/generate-menu.js`
+- Document filenames will affect URL paths
+- Multi-level nested directories are supported
 
-## 📄 许可证
+## 📄 License
 
 ISC
-

@@ -12,8 +12,8 @@ importers:
         specifier: ^1.136.3
         version: 1.136.8(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       dishui:
-        specifier: ^0.0.26
-        version: 0.0.26(@types/react@19.2.5)(markmap-common@0.18.9)(react-is@19.2.0)(redux@5.0.1)(vite@6.4.1(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))
+        specifier: ^0.0.27
+        version: 0.0.27(@types/react@19.2.5)(markmap-common@0.18.9)(react-is@19.2.0)(redux@5.0.1)(vite@6.4.1(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -1065,8 +1065,8 @@ packages:
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
 
-  dishui@0.0.26:
-    resolution: {integrity: sha512-YZ/kbpbgeRB7KARBMvlwAI6y8uusFKWfeX9bJOx34a8vzwZqeelln/gq1nl4NS3oy1oJ4W9ewH08gDbZpH8DmA==}
+  dishui@0.0.27:
+    resolution: {integrity: sha512-DJ3GiFpET7CByIuKVbSgH+4tlaFSnV23NYpGpGTSlQy97Tcn+PiFqA7AwwregPchKjavoK5RxUzeHG+nzm9n/Q==}
 
   dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
@@ -3003,7 +3003,7 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
-  dishui@0.0.26(@types/react@19.2.5)(markmap-common@0.18.9)(react-is@19.2.0)(redux@5.0.1)(vite@6.4.1(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)):
+  dishui@0.0.27(@types/react@19.2.5)(markmap-common@0.18.9)(react-is@19.2.0)(redux@5.0.1)(vite@6.4.1(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)):
     dependencies:
       '@tailwindcss/vite': 4.1.17(vite@6.4.1(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))
       '@tanstack/match-sorter-utils': 8.19.4
