@@ -16,7 +16,7 @@
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
     "@tanstack/react-router": "^1.136.3",
-    "dishui": "file:../DishUI",
+    "dishui": "^0.0.30",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
