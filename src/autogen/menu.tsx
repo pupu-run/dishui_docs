@@ -15,7 +15,6 @@ export const menuItems: MenuItem[] = [
     {
         id: 'codemirror6-tutorial',
         label: 'CodeMirror 6 完整教程',
-        path: '/codemirror6-tutorial',
         icon: (
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -25,7 +24,6 @@ export const menuItems: MenuItem[] = [
             {
                 id: 'codemirror6-tutorial-01-basics',
                 label: '01-basics',
-                path: '/codemirror6-tutorial/01-basics',
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -67,7 +65,6 @@ export const menuItems: MenuItem[] = [
             {
                 id: 'codemirror6-tutorial-02-styling',
                 label: '02-styling',
-                path: '/codemirror6-tutorial/02-styling',
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -109,7 +106,6 @@ export const menuItems: MenuItem[] = [
             {
                 id: 'codemirror6-tutorial-03-features',
                 label: '03-features',
-                path: '/codemirror6-tutorial/03-features',
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -161,7 +157,6 @@ export const menuItems: MenuItem[] = [
             {
                 id: 'codemirror6-tutorial-04-practice',
                 label: '04-practice',
-                path: '/codemirror6-tutorial/04-practice',
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -195,7 +190,6 @@ export const menuItems: MenuItem[] = [
     {
         id: 'markdown-tutorial',
         label: 'markdown-tutorial',
-        path: '/markdown-tutorial',
         icon: (
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -205,7 +199,6 @@ export const menuItems: MenuItem[] = [
             {
                 id: 'markdown-tutorial-01-basics',
                 label: '01-basics',
-                path: '/markdown-tutorial/01-basics',
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -257,7 +250,6 @@ export const menuItems: MenuItem[] = [
             {
                 id: 'markdown-tutorial-02-intermediate',
                 label: '02-intermediate',
-                path: '/markdown-tutorial/02-intermediate',
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -309,7 +301,6 @@ export const menuItems: MenuItem[] = [
             {
                 id: 'markdown-tutorial-03-advanced',
                 label: '03-advanced',
-                path: '/markdown-tutorial/03-advanced',
                 icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
